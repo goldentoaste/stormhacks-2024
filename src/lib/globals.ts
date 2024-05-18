@@ -1,3 +1,4 @@
+import { writable } from "svelte/store";
 
 
 export interface TodoItem {
@@ -5,3 +6,5 @@ export interface TodoItem {
     done: boolean;
     message: string;
 }
+
+export const counter = writable(0)

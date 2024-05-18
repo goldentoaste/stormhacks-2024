@@ -1,27 +1,43 @@
 <script lang="ts">
+    import { createEventDispatcher } from "svelte";
+    import { fly } from "svelte/transition";
+
+    import {counter} from "$lib/globals"
 
 
-    // TODO declare the variables here. id, done,
+    // TODO declare the variables here. id, done
+    export let id = "";
+    export let done = false;
+
     // id is required so we know which to delete later
 
     // TODO  make a event dispatcher here. call createEventDispatcher()
+    const dispatch = createEventDispatcher();
+
 </script>
 
 <!-- "✔️" : "❌" -->
 <!-- The todo item will be really simple, just a span to display message. and a delete button -->
 
-<div class="todoItem">
+<div class="todoItem" class:done transition:fly={{
+    x:100
+}}>
     <!-- TODO give the item different style depending on 'done' -->
     <!-- TODO add a transition here? for when item is created or deleted. -->
 
-    <span>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <span on:click={()=>{
+        dispatch("toggleDone")
+        $counter += 1;
+    }}>
+        {done ? "✔️" : "❌" } <slot/>
         <!-- TODO dispatch a "toggleDone" event here on click -->
 
-        <!-- TODO display the message here. -->
-        <!-- display "✔️" or "❌" here depending on one -->
     </span>
 
-    <button class="deleteButton" > 
+    <button class="deleteButton"  on:click={()=>{
+        dispatch("deleteTodo")
+    }}> 
         <!-- TODO dispatch a "delete" event when clicked. -->
         Delete
     </button>

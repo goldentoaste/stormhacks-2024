@@ -1,6 +1,7 @@
 <script lang="ts">
-    import List from "$lib/components/TodoList.svelte";
-    import type { TodoItem } from "$lib/globals";
+    
+    import TodoList from "$lib/components/TodoList.svelte";
+import type { TodoItem } from "$lib/globals";
 
     let todoItems: TodoItem[] = [
         {
@@ -20,7 +21,7 @@
 </script>
 
 <h1>My Todo List 📝</h1>
-
+<TodoList todoItems={todoItems}></TodoList>
 <!-- Import and put the TodoList Component here, and give it the list of todoItems. -->
 
 <style>
